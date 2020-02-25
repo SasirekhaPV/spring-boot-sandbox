@@ -25,6 +25,7 @@ public class CategoryResource {
 
 	@Autowired
 	CategoryDao dao;
+	
 
 	@GetMapping
 	public ResponseEntity<Map<String, Object>> getAll() {
