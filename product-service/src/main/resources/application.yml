@@ -11,4 +11,7 @@ spring:
             ddl-auto: update
 
 server:
-    port: 3001
+    port: 3002
+    
+category-service:
+    endpoint: http://localhost:3001/api/categories
