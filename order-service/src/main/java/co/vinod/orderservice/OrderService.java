@@ -21,7 +21,6 @@ public class OrderService {
 		orders.forEach(o -> {
 			Object lineItem = template.exchange(url + o.getId(), HttpMethod.GET, null, Object.class);
 			o.getLineItems().add(lineItem);
-			System.out.println(lineItem.toString());
 		});
 
 		return orders;

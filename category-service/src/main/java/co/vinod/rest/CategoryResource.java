@@ -18,14 +18,15 @@ import org.springframework.web.bind.annotation.RestController;
 
 import co.vinod.dao.CategoryDao;
 import co.vinod.entity.Category;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @RestController
 @RequestMapping("/api/categories")
 public class CategoryResource {
 
 	@Autowired
 	CategoryDao dao;
-	
 
 	@GetMapping
 	public ResponseEntity<Map<String, Object>> getAll() {
@@ -41,6 +42,7 @@ public class CategoryResource {
 
 	@GetMapping("/{id}")
 	public ResponseEntity<Category> getById(@PathVariable Integer id) {
+		log.info("got request for category with id {}", id);
 		return ResponseEntity.ok(dao.findById(id).get());
 	}
 
@@ -65,8 +67,7 @@ public class CategoryResource {
 			dao.deleteById(id);
 			return ResponseEntity.ok(c);
 		} catch (NoSuchElementException e) {
-			return ResponseEntity.status(HttpStatus.NOT_FOUND)
-					.body("No category found for id::" + id);
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No category found for id::" + id);
 		}
 	}
 

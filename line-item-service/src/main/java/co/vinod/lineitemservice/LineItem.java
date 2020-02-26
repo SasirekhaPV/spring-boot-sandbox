@@ -34,5 +34,5 @@ public class LineItem {
 	private Double discount;
 	
 	@Transient
-	List<Object> products = new ArrayList<Object>();
+	Object product;
 }

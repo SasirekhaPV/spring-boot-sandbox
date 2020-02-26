@@ -18,8 +18,8 @@ public class LineItemService {
 		Iterable<LineItem> lineItems = dao.findByOrderId(orderId);
 
 		lineItems.forEach(li -> {
-			Object products = template.exchange(url + li.getProductId(), HttpMethod.GET, null, Object.class);
-			li.getProducts().add(products);
+			Object product = template.exchange(url + li.getProductId(), HttpMethod.GET, null, Object.class);
+			li.setProduct(product);
 		});
 
 		return lineItems;
